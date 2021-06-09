@@ -18,7 +18,7 @@
 
 <br/>
 
-Read in a different language: [![CN](/assets/flags/CN.png)**CN**](/README.chinese.md), [![BR](/assets/flags/BR.png)**BR**](/README.brazilian-portuguese.md), [![RU](/assets/flags/RU.png)**RU**](/README.russian.md), [![PL](/assets/flags/PL.png)**PL**](/README.polish.md), [![JA](/assets/flags/JA.png)**JA**](/README.japanese.md), [![EU](/assets/flags/EU.png)**EU**](/README.basque.md) [(![ES](/assets/flags/ES.png)**ES**, ![FR](/assets/flags/FR.png)**FR**, ![HE](/assets/flags/HE.png)**HE**,[![VN](/assets/flags/VN.png)**VN**](/README.vietnamese.md), ![KR](/assets/flags/KR.png)**KR** and ![TR](/assets/flags/TR.png)**TR** in progress! )](#translations)
+Read in a different language: [![CN](/assets/flags/CN.png)**CN**](/README.chinese.md), [![BR](/assets/flags/BR.png)**BR**](/README.brazilian-portuguese.md), [![RU](/assets/flags/RU.png)**RU**](/README.russian.md), [![PL](/assets/flags/PL.png)**PL**](/README.polish.md), [![JA](/assets/flags/JA.png)**JA**](/README.japanese.md), [![EU](/assets/flags/EU.png)**EU**](/README.basque.md) [(![ES](/assets/flags/ES.png)**ES**, ![FR](/assets/flags/FR.png)**FR**, ![HE](/assets/flags/HE.png)**HE**, ![VN](/assets/flags/VN.png)**VN**, ![KR](/assets/flags/KR.png)**KR** and ![TR](/assets/flags/TR.png)**TR** in progress! )](#translations)
 
 <br/>
 
@@ -40,7 +40,7 @@ Read in a different language: [![CN](/assets/flags/CN.png)**CN**](/README.chines
 
 **2. Đây là bộ tài liệu lớn nhất đang được biên tập, và nó vẫn sẽ tiếp tục mở rộng mỗi tuần -** hiện tai, đã có hơn 80 bài best practices, style guides, và architectural tips được hoàn thành. Các issues và pull requests được tạo mỗi ngày nhằm giữ mọi thứ luôn được cập nhật. Chúng tôi rất vui khi được nhìn thấy các đóng góp của bạn ở đây, dù đó là sửa chữa các lỗi trong code, giúp cải thiện và tạo các bản dịch, hoặc là gợi ý các ý tưởng tuyệt vời. Xem [hướng dẫn viết các bài đóng góp tại đây](/.operations/writing-guidelines.md)
 
-**3. Các bài thực hành hầu hết có phần thông tin bổ sung -** hầu hết bao gồm **🔗Read More** link mở rộng bài thực hành với các code mẫu, các quotes từ các blogs được chọn lọc, và nhiều thông tin khác nữa
+**3. Các bài thực hành hầu hết có phần thông tin bổ sung -** hầu hết các gạch đầu dòng bao gồm **🔗Read More** link mở rộng bài thực hành với các code mẫu, các quotes từ các blogs được chọn lọc, và nhiều thông tin khác nữa
 
 <br/><br/>
 
@@ -59,21 +59,21 @@ Read in a different language: [![CN](/assets/flags/CN.png)**CN**](/README.chines
 
 # `1. Project Structure Practices`
 
-## ![✔] 1.1 Structure your solution by components
+## ![✔] 1.1 Structure your solution by components ( Phân code của bạn thành các components )
 
-**TL;DR:** The worst large applications pitfall is maintaining a huge code base with hundreds of dependencies - such a monolith slows down developers as they try to incorporate new features. Instead, partition your code into components, each gets its folder or a dedicated codebase, and ensure that each unit is kept small and simple. Visit 'Read More' below to see examples of correct project structure
+**TL;DR:** Điều tồi tệ nhất của các ứng dụng khổng lồ là phải duy trì một cơ sở mã khổng lồ với hàng trăm các gói dependencies - một khối như vậy làm chậm các nhà phát triển khi họ cố gắng kết hợp các tính năng mới. Thay vào đó, hãy phân vùng mã của bạn thành các thành phần, mỗi thành phần nhận được thư mục của nó hoặc một cơ sở mã chuyên dụng và đảm bảo rằng mỗi đơn vị được giữ nhỏ và đơn giản. Xem phần 'Read More' ở dưới để xem thêm các ví dụ về cấc cấu trúc project mẫu
 
-**Otherwise:** When developers who code new features struggle to realize the impact of their change and fear to break other dependent components - deployments become slower and riskier. It's also considered harder to scale-out when all the business units are not separated
+**Otherwise:** Khi các nhà phát triển code các features mới, họ sợ các sự thay đổi của họ và sợ phá vỡ các thành phần phụ thuộc khác - việc phát triển sản phẩm lúc này trở nên chậm hơn và rủi ro hơn. Nó cũng được coi là khó scale hơn khi tất cả các business units không được tách biệt
 
 🔗 [**Read More: structure by components**](/sections/projectstructre/breakintcomponents.md)
 
 <br/><br/>
 
-## ![✔] 1.2 Layer your components, keep the web layer within its boundaries
+## ![✔] 1.2 Layer your components, keep the web layer within its boundaries ( Tạo layer cho các components của bạn và giữ các web layer trong giới hạn của nó )
 
-**TL;DR:** Each component should contain 'layers' - a dedicated object for the web, logic, and data access code. This not only draws a clean separation of concerns but also significantly eases mocking and testing the system. Though this is a very common pattern, API developers tend to mix layers by passing the web layer objects (e.g. Express req, res) to business logic and data layers - this makes your application dependent on and accessible only by specific web frameworks
+**TL;DR:** Mỗi component nên có 'layers' - một dedicated object cho trang web, logic, và data access code. Điều này không chỉ giúp tách biệt rõ ràng các vấn đề cần quan tâm nhưng đồng thời cũng giúp giảm thiểu đáng kể cho việc mock và test hệ thống. Mặc dù pattern này khá thông dụng, nhưng các API developers có xu hướng trộn các layer với nhau bằng việc chuyền các web layer objects ( như Express req, res ) xuống bussiness logic và data layers - điều này làm như ứng dụng của bạn bị phụ thuộc và chỉ có thể được truy cập bảo một số web framework cụ thể.
 
-**Otherwise:** App that mixes web objects with other layers cannot be accessed by testing code, CRON jobs, triggers from message queues, etc
+**Otherwise:** Các ứng dụng mà trộn lẫn giữa web objects với các layers không thể được truy cập bởi các trình test code, CRON jobs, trình kích hoạt từ message queues,vv
 
 🔗 [**Read More: layer your app**](/sections/projectstructre/createlayers.md)
 
